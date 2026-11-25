@@ -1,0 +1,106 @@
+# Стенд OpenMRS 3 для автотестов (ПУ-1). Копия docker-compose.yml из репозитория
+# openmrs/openmrs-distro-referenceapplication (ветка main, 23.11.2026) с одним отличием:
+# у сервиса db открыт порт 3307 для SQL-проверок (ПУ-9).
+# Файл лежит у нас, чтобы изменения в репозитории продукта не ломали прогоны без нашего ведома.
+#
+# Запуск из корня проекта (файл называется docker-compose.yml, поэтому compose находит его сам):
+#   docker compose up -d
+# Тег образов задаётся переменной TAG, по умолчанию qa:
+#   TAG=<тег> docker compose up -d
+
+# Имя проекта: контейнеры и тома называются openmrs-...
+# Без него compose назвал бы проект по папке — open-mrs-testing-framework — и поднял бы второй стенд с пустой базой
+name: openmrs
+
+services:
+  gateway:
+    image: openmrs/openmrs-reference-application-3-gateway:${TAG:-qa}
+    restart: "unless-stopped"
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+
+  frontend:
+    image: openmrs/openmrs-reference-application-3-frontend:${TAG:-qa}
+    restart: "unless-stopped"
+    environment:
+      SPA_PATH: /openmrs/spa
+      API_URL: /openmrs
+      SPA_CONFIG_URLS: /openmrs/spa/config-core_demo.json
+      SPA_DEFAULT_LOCALE:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      timeout: 5s
+    depends_on:
+      - backend
+
+  backend:
+    image: openmrs/openmrs-reference-application-3-backend:${TAG:-qa}
+    restart: "unless-stopped"
+    depends_on:
+      - db
+    environment:
+      OMRS_CONFIG_MODULE_WEB_ADMIN: "true"
+      OMRS_CONFIG_AUTO_UPDATE_DATABASE: "true"
+      OMRS_CONFIG_CREATE_TABLES: "true"
+      OMRS_CONFIG_CONNECTION_SERVER: db
+      OMRS_CONFIG_CONNECTION_DATABASE: openmrs
+      OMRS_CONFIG_CONNECTION_USERNAME: ${OMRS_DB_USER:-openmrs}
+      OMRS_CONFIG_CONNECTION_PASSWORD: ${OMRS_DB_PASSWORD:-openmrs}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/openmrs"]
+      timeout: 5s
+    volumes:
+      - openmrs-data:/openmrs/data
+
+  # MariaDB
+  db:
+    image: mariadb:10.11.7
+    restart: "unless-stopped"
+    command: "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci"
+    healthcheck:
+      test: "mysql --user=${OMRS_DB_USER:-openmrs} --password=${OMRS_DB_PASSWORD:-openmrs} --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 1s
+      retries: 5
+    environment:
+      MYSQL_DATABASE: openmrs
+      MYSQL_USER: ${OMRS_DB_USER:-openmrs}
+      MYSQL_PASSWORD: ${OMRS_DB_PASSWORD:-openmrs}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-openmrs}
+    # Отличие от файла продукта: база доступна тестам с хоста как localhost:3307
+    # (слева порт на компьютере, справа порт в контейнере)
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  # Наш сервис, в файле продукта его нет: автотесты в контейнере, без JDK и Maven на компьютере.
+  # Профиль tests: обычный "up -d" поднимает только стенд, тесты запускаются отдельной командой:
+  #   docker compose run --rm tests
+  tests:
+    image: maven:3.9-eclipse-temurin-21
+    profiles: ["tests"]
+    depends_on:
+      - gateway
+      - db
+    working_dir: /project
+    volumes:
+      # папка проекта; путь считается от папки этого файла — файл в корне проекта, поэтому "."
+      # target/ с результатами Allure тоже здесь — отчёт виден на компьютере
+      - .:/project
+      # кеш зависимостей Maven, чтобы не скачивать их при каждом запуске
+      - maven-repo:/root/.m2
+    # Внутри сети Docker стенд доступен по именам сервисов, а не через localhost:
+    # API — gateway:80, база — db:3306 (порт контейнера, не 3307).
+    # Config берёт значение из -Dключ=... раньше, чем из config.properties.
+    command: >
+      bash -c "scripts/wait-for-stand.sh http://gateway/openmrs/ws/rest/v1/session 1500
+      && mvn -B test -Psmoke -Dserver=http://gateway:80 -Ddb.url=jdbc:mariadb://db:3306/openmrs"
+
+volumes:
+  openmrs-data: ~
+  db-data: ~
+  maven-repo: ~
