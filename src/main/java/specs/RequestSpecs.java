@@ -7,6 +7,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import reporting.AllureHttpStepFilter;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -21,7 +22,11 @@ public class RequestSpecs {
         return new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .addFilters(List.of(new RequestLoggingFilter(), new ResponseLoggingFilter(), new AllureRestAssured()))
+                .addFilters(List.of(
+                        new AllureHttpStepFilter(),
+                        new RequestLoggingFilter(),
+                        new ResponseLoggingFilter(),
+                        new AllureRestAssured()))
                 // порт 80 указан в server явно: без порта RestAssured по умолчанию идёт на 8080
                 .setBaseUri(Config.getProperty("server") + Config.getProperty("apiVersion"));
     }

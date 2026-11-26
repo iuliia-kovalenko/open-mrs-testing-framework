@@ -22,8 +22,16 @@ public enum Endpoint {
 
     // пациент
     PATIENT("/patient", CreatePatientRequest.class, PatientResponse.class),
-    IDGEN_IDENTIFIER("/idgen/identifiersource/{sourceUuid}/identifier", BaseModel.class, GeneratedIdentifierResponse.class);
+    IDGEN_IDENTIFIER("/idgen/identifiersource/{sourceUuid}/identifier", BaseModel.class, GeneratedIdentifierResponse.class),
 
+    // встречи
+    APPOINTMENT("/appointment", AppointmentRequest.class, AppointmentResponse.class),
+    APPOINTMENT_STATUS_CHANGE("/appointments/{appointmentUuid}/status-change", StatusChangeRequest.class, AppointmentResponse.class),
+
+    // приём
+    VISIT("/visit", CreateVisitRequest.class, VisitResponse.class),
+    ENCOUNTER("/encounter", EncounterRequest.class, EncounterResponse.class),
+    OBS("/obs", ObsRequest.class, ObsResponse.class);
 
     private final String url;
     private final Class<? extends BaseModel> requestModel;
