@@ -25,6 +25,7 @@ public enum Endpoint {
     APPOINTMENT("/appointment", AppointmentRequest.class, AppointmentResponse.class),
     APPOINTMENT_STATUS_CHANGE("/appointments/{appointmentUuid}/status-change", StatusChangeRequest.class, AppointmentResponse.class),
     APPOINTMENT_SEARCH("/appointments/search", AppointmentSearchRequest.class, AppointmentResponse.class),
+    APPOINTMENT_CONFLICTS("/appointments/conflicts", AppointmentRequest.class, BaseModel.class),
 
     // Приём
     VISIT("/visit", CreateVisitRequest.class, VisitResponse.class),
