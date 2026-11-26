@@ -11,7 +11,6 @@ import specs.ResponseSpecs;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 // Приём (encounter) и показатели (obs): подготовка данных и чтение для проверок.
 public class EncounterSteps {
@@ -37,18 +36,10 @@ public class EncounterSteps {
                 .build();
     }
 
-    public static EncounterResponse recordVitals(RequestSpecification spec, EncounterRequest request) {
-        return recordVitals(spec, () -> request);
-    }
-
     public static EncounterResponse recordVitals(RequestSpecification spec, VisitResponse visit, VitalsData vitals) {
-        return recordVitals(spec, () -> createVitalsRequest(visit, vitals));
-    }
-
-    private static EncounterResponse recordVitals(RequestSpecification spec, Supplier<EncounterRequest> request) {
         return StepLogger.log("Записать показатели в приёме Vitals",
                 () -> new ValidatedCrudRequester<EncounterResponse>(spec, Endpoint.ENCOUNTER,
-                        ResponseSpecs.entityWasCreated()).post(request.get()));
+                        ResponseSpecs.entityWasCreated()).post(createVitalsRequest(visit, vitals)));
     }
 
     public static EncounterResponse getEncounter(RequestSpecification spec, String encounterUuid) {

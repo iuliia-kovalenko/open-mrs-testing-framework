@@ -11,7 +11,6 @@ import specs.ResponseSpecs;
 
 import java.time.ZonedDateTime;
 import java.util.Map;
-import java.util.function.Supplier;
 
 // Встречи: подготовка данных и чтение для проверок.
 // Модуль appointments устроен иначе, чем остальной OpenMRS:
@@ -34,17 +33,9 @@ public class AppointmentSteps {
 
     // ПУ-5: встреча в статусе Scheduled — для тестов, где встреча только предусловие
     public static AppointmentResponse createAppointment(RequestSpecification spec, TestPatient patient) {
-        return createAppointment(spec, () -> createAppointmentRequest(patient));
-    }
-
-    public static AppointmentResponse createAppointment(RequestSpecification spec, AppointmentRequest request) {
-        return createAppointment(spec, () -> request);
-    }
-
-    private static AppointmentResponse createAppointment(RequestSpecification spec, Supplier<AppointmentRequest> request) {
         return StepLogger.log("Создать запись на приём",
                 () -> new ValidatedActionRequester<AppointmentResponse>(spec, Endpoint.APPOINTMENT,
-                        ResponseSpecs.requestReturnsOk()).post(request.get()));
+                        ResponseSpecs.requestReturnsOk()).post(createAppointmentRequest(patient)));
     }
 
     public static AppointmentResponse changeStatus(RequestSpecification spec, String appointmentUuid, String status) {
