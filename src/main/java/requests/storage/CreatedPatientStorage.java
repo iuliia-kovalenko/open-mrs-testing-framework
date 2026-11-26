@@ -1,5 +1,6 @@
 package requests.storage;
 
+import reporting.StepLogger;
 import requests.skeleton.Endpoint;
 import requests.skeleton.requests.CrudRequester;
 import specs.RequestSpecs;
@@ -21,10 +22,16 @@ public class CreatedPatientStorage {
     }
 
     public static void deleteAll() {
-        for (String uuid : patientUuids) {
-            new CrudRequester(RequestSpecs.adminSpec(), Endpoint.PATIENT, ResponseSpecs.requestReturnsNoContent())
-                    .delete(uuid);
+        if (patientUuids.isEmpty()) {
+            return;
         }
-        patientUuids.clear();
+
+        StepLogger.log("Удалить тестовых пациентов", () -> {
+            for (String uuid : patientUuids) {
+                new CrudRequester(RequestSpecs.adminSpec(), Endpoint.PATIENT, ResponseSpecs.requestReturnsNoContent())
+                        .delete(uuid);
+            }
+            patientUuids.clear();
+        });
     }
 }
