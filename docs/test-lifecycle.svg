@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="252" style="color:#44575e" viewBox="0 0 1000 252" role="img" aria-label="Порядок выполнения теста: BeforeEach создаёт softly; тело теста вызывает Steps и проверки; первый AfterEach вызывает assertAll; второй AfterEach удаляет созданных пациентов, uuid которых запомнил storage.">
+  <title>Жизнь одного теста</title>
+  <style>
+    .band { fill: #ecf2f3; stroke: #d3dee1; }
+    .chip { fill: #ffffff; stroke: #98adb3; }
+    .side { fill: #ffffff; stroke: #98adb3; stroke-dasharray: 5 4; }
+    .ext { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .hl { fill: #ffffff; stroke: #0a7570; stroke-width: 1.8; }
+    .ghost { fill: none; stroke: #0a7570; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lane { fill: #ecf2f3; stroke: none; }
+    .wrap1 { fill: #ecf2f3; stroke: #98adb3; }
+    .wrap2 { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .wrap3 { fill: #ffffff; stroke: #98adb3; }
+    .arr { fill: none; stroke: #44575e; stroke-width: 1.5; }
+    .arr-d { fill: none; stroke: #44575e; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lead-line { fill: none; stroke: #98adb3; stroke-width: 1; }
+    .dot { fill: #44575e; }
+    .t-layer { font: 600 13.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-pkg { font: 400 11px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #586a71; }
+    .t-note { font: 400 11.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-cls { font: 500 11.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-cls-s { font: 500 10.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-desc { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-arrow { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #44575e; }
+    .t-code { font: 400 12px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-strong { font: 600 12.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-accent { font: 600 12px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0a7570; }
+  </style>
+  <rect x="0" y="0" width="1000" height="252" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <rect class="chip" x="20" y="24" width="170" height="62" rx="8"/>
+  <text class="t-cls" x="105" y="49" text-anchor="middle">@BeforeEach</text>
+  <text class="t-desc" x="105" y="68" text-anchor="middle">создаёт softly</text>
+  <rect class="hl" x="226" y="24" width="384" height="62" rx="8"/>
+  <text class="t-strong" x="418" y="49" text-anchor="middle">Тело теста</text>
+  <text class="t-desc" x="418" y="68" text-anchor="middle">предусловия, запросы, проверки</text>
+  <rect class="chip" x="646" y="24" width="150" height="62" rx="8"/>
+  <text class="t-cls" x="721" y="49" text-anchor="middle">@AfterEach</text>
+  <text class="t-desc" x="721" y="68" text-anchor="middle">softly.assertAll()</text>
+  <rect class="chip" x="832" y="24" width="148" height="62" rx="8"/>
+  <text class="t-cls" x="906" y="49" text-anchor="middle">@AfterEach</text>
+  <text class="t-desc" x="906" y="68" text-anchor="middle">очистка данных</text>
+  <line class="arr" x1="190" y1="55" x2="223" y2="55" marker-end="url(#ah3)"/>
+  <line class="arr" x1="610" y1="55" x2="643" y2="55" marker-end="url(#ah3)"/>
+  <line class="arr" x1="796" y1="55" x2="829" y2="55" marker-end="url(#ah3)"/>
+
+  <line class="lead-line" x1="322" y1="86" x2="322" y2="118"/>
+  <line class="lead-line" x1="514" y1="86" x2="514" y2="118"/>
+  <line class="lead-line" x1="721" y1="86" x2="721" y2="118"/>
+  <line class="lead-line" x1="906" y1="86" x2="906" y2="118"/>
+
+  <rect class="side" x="226" y="118" width="186" height="98" rx="8"/>
+  <text class="t-strong" x="240" y="140">Вызов Steps</text>
+  <text class="t-desc" x="240" y="160">StepLogger.log — шаг Allure</text>
+  <text class="t-desc" x="240" y="178">внутри — HTTP-шаги фильтра</text>
+  <text class="t-desc" x="240" y="196">POST /patient → storage</text>
+
+  <rect class="side" x="424" y="118" width="186" height="98" rx="8"/>
+  <text class="t-strong" x="438" y="140">Проверка</text>
+  <text class="t-desc" x="438" y="160">двойная обёртка, см. ниже</text>
+  <text class="t-desc" x="438" y="178">ошибка не останавливает</text>
+  <text class="t-desc" x="438" y="196">тест, а копится в softly</text>
+
+  <rect class="side" x="646" y="118" width="150" height="98" rx="8"/>
+  <text class="t-desc" x="660" y="140">падает, если в softly</text>
+  <text class="t-desc" x="660" y="158">накопились ошибки —</text>
+  <text class="t-desc" x="660" y="176">в отчёте видны все</text>
+  <text class="t-desc" x="660" y="194">упавшие проверки</text>
+
+  <rect class="side" x="832" y="118" width="148" height="98" rx="8"/>
+  <text class="t-cls-s" x="906" y="140" text-anchor="middle">CreatedPatientStorage</text>
+  <text class="t-cls-s" x="906" y="158" text-anchor="middle">.deleteAll()</text>
+  <text class="t-desc" x="906" y="178" text-anchor="middle">DELETE /patient/{uuid}</text>
+  <text class="t-desc" x="906" y="196" text-anchor="middle">→ voided = 1</text>
+
+  <path class="arr-d" d="M319 216 V240 H950 V219" marker-end="url(#ah3)"/>
+  <text class="t-arrow" x="620" y="234" text-anchor="middle">uuid созданных пациентов</text>
+</svg>
