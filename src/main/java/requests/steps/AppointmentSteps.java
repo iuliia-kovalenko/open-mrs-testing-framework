@@ -110,4 +110,10 @@ public class AppointmentSteps {
 
         return Arrays.asList(responses);
     }
+
+    // Если конфликтов нет, сервер отвечает 204 без тела — это и проверяет спецификация
+    public static void checkNoConflicts(RequestSpecification spec, AppointmentRequest request) {
+        new ActionRequester(spec, Endpoint.APPOINTMENT_CONFLICTS, ResponseSpecs.requestReturnsNoContent())
+                .post(request);
+    }
 }
