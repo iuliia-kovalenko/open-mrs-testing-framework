@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="706" style="color:#44575e" viewBox="0 0 1020 706" role="img" aria-label="Слои фреймворка: тесты вызывают Steps, Steps передают запрос Requester-ам, Requester-ы собраны из Endpoint, спецификаций и моделей и отправляют HTTP-запрос в OpenMRS. Вспомогательные пакеты: db, models.comparison, generators, storage, configs. E2E-02 читает базу MariaDB напрямую через db.">
+  <title>Слои фреймворка</title>
+  <style>
+    .band { fill: #ecf2f3; stroke: #d3dee1; }
+    .chip { fill: #ffffff; stroke: #98adb3; }
+    .side { fill: #ffffff; stroke: #98adb3; stroke-dasharray: 5 4; }
+    .ext { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .hl { fill: #ffffff; stroke: #0a7570; stroke-width: 1.8; }
+    .ghost { fill: none; stroke: #0a7570; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lane { fill: #ecf2f3; stroke: none; }
+    .wrap1 { fill: #ecf2f3; stroke: #98adb3; }
+    .wrap2 { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .wrap3 { fill: #ffffff; stroke: #98adb3; }
+    .arr { fill: none; stroke: #44575e; stroke-width: 1.5; }
+    .arr-d { fill: none; stroke: #44575e; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lead-line { fill: none; stroke: #98adb3; stroke-width: 1; }
+    .dot { fill: #44575e; }
+    .t-layer { font: 600 13.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-pkg { font: 400 11px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #586a71; }
+    .t-note { font: 400 11.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-cls { font: 500 11.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-cls-s { font: 500 10.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-desc { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-arrow { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #44575e; }
+    .t-code { font: 400 12px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-strong { font: 600 12.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-accent { font: 600 12px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0a7570; }
+  </style>
+  <rect x="0" y="0" width="1020" height="706" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <!-- Band 1: tests -->
+  <rect class="band" x="20" y="20" width="680" height="118" rx="10"/>
+  <text class="t-layer" x="36" y="42">Тесты <tspan class="t-pkg" dx="6">src/test/java/api</tspan></text>
+  <text class="t-note" x="684" y="42" text-anchor="end">сценарий и проверки</text>
+  <rect class="chip" x="36" y="52" width="100" height="46" rx="7"/>
+  <text class="t-cls" x="86" y="71" text-anchor="middle">auth</text>
+  <text class="t-desc" x="86" y="88" text-anchor="middle">AUTH-02</text>
+  <rect class="chip" x="142" y="52" width="150" height="46" rx="7"/>
+  <text class="t-cls" x="217" y="71" text-anchor="middle">patient</text>
+  <text class="t-desc" x="217" y="88" text-anchor="middle">PAT-02, 03 · SRCH-02</text>
+  <rect class="chip" x="298" y="52" width="120" height="46" rx="7"/>
+  <text class="t-cls" x="358" y="71" text-anchor="middle">appointment</text>
+  <text class="t-desc" x="358" y="88" text-anchor="middle">APT-02, 03</text>
+  <rect class="chip" x="424" y="52" width="160" height="46" rx="7"/>
+  <text class="t-cls" x="504" y="71" text-anchor="middle">visit</text>
+  <text class="t-desc" x="504" y="88" text-anchor="middle">VIS-02, 03, 05, 06</text>
+  <rect class="chip" x="590" y="52" width="94" height="46" rx="7"/>
+  <text class="t-cls" x="637" y="71" text-anchor="middle">e2e</text>
+  <text class="t-desc" x="637" y="88" text-anchor="middle">E2E-02</text>
+  <text class="t-note" x="36" y="122">Все тестовые классы наследуют <tspan class="t-cls-s">BaseTest</tspan>: softly, assertAll() и очистка данных после теста</text>
+
+  <!-- Band 2: steps -->
+  <rect class="band" x="20" y="172" width="680" height="84" rx="10"/>
+  <text class="t-layer" x="36" y="194">Steps <tspan class="t-pkg" dx="6">requests/steps</tspan></text>
+  <text class="t-note" x="684" y="194" text-anchor="end">данные, предусловия, чтение</text>
+  <rect class="chip" x="36" y="206" width="120" height="36" rx="7"/>
+  <text class="t-cls-s" x="96" y="228" text-anchor="middle">PatientSteps</text>
+  <rect class="chip" x="168" y="206" width="120" height="36" rx="7"/>
+  <text class="t-cls-s" x="228" y="228" text-anchor="middle">AppointmentSteps</text>
+  <rect class="chip" x="300" y="206" width="120" height="36" rx="7"/>
+  <text class="t-cls-s" x="360" y="228" text-anchor="middle">VisitSteps</text>
+  <rect class="chip" x="432" y="206" width="120" height="36" rx="7"/>
+  <text class="t-cls-s" x="492" y="228" text-anchor="middle">EncounterSteps</text>
+  <rect class="chip" x="564" y="206" width="120" height="36" rx="7"/>
+  <text class="t-cls-s" x="624" y="228" text-anchor="middle">ReferenceSteps</text>
+
+  <!-- Band 3: requesters -->
+  <rect class="band" x="20" y="290" width="680" height="134" rx="10"/>
+  <text class="t-layer" x="36" y="312">Requester-ы <tspan class="t-pkg" dx="6">requests/skeleton/requests · *Requester</tspan></text>
+  <text class="t-note" x="684" y="312" text-anchor="end">один тип запроса — один класс</text>
+  <text class="t-desc" x="36" y="346">→ модель ответа</text>
+  <rect class="chip" x="150" y="326" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="214" y="346" text-anchor="middle">ValidatedCrud</text>
+  <rect class="chip" x="284" y="326" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="348" y="346" text-anchor="middle">ValidatedSearch</text>
+  <rect class="chip" x="418" y="326" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="482" y="346" text-anchor="middle">ValidatedAction</text>
+  <line class="arr" x1="214" y1="358" x2="214" y2="376" marker-end="url(#ah1)"/>
+  <line class="arr" x1="348" y1="358" x2="348" y2="376" marker-end="url(#ah1)"/>
+  <line class="arr" x1="482" y1="358" x2="482" y2="376" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="222" y="371">содержит</text>
+  <text class="t-desc" x="36" y="398">→ сырой ответ</text>
+  <rect class="chip" x="150" y="378" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="214" y="398" text-anchor="middle">Crud</text>
+  <rect class="chip" x="284" y="378" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="348" y="398" text-anchor="middle">Search</text>
+  <rect class="chip" x="418" y="378" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="482" y="398" text-anchor="middle">Action</text>
+  <rect class="chip" x="552" y="378" width="128" height="32" rx="7"/>
+  <text class="t-cls-s" x="616" y="398" text-anchor="middle">Session</text>
+
+  <!-- Band 4: foundation -->
+  <rect class="band" x="20" y="458" width="680" height="138" rx="10"/>
+  <text class="t-layer" x="36" y="480">Основа <tspan class="t-pkg" dx="6">requests/skeleton · specs · models</tspan></text>
+  <text class="t-note" x="684" y="480" text-anchor="end">из чего собран запрос</text>
+  <rect class="chip" x="36" y="490" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="48" y="508">Endpoint</text>
+  <text class="t-desc" x="48" y="525">путь + модель запроса и ответа</text>
+  <rect class="chip" x="256" y="490" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="268" y="508">HttpRequest</text>
+  <text class="t-desc" x="268" y="525">общий конструктор Requester-ов</text>
+  <rect class="chip" x="476" y="490" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="488" y="508">interfaces</text>
+  <text class="t-desc" x="488" y="525">Crud, Search, Action, Session</text>
+  <rect class="chip" x="36" y="542" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="48" y="560">RequestSpecs</text>
+  <text class="t-desc" x="48" y="577">Basic-авторизация, шаги Allure</text>
+  <rect class="chip" x="256" y="542" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="268" y="560">ResponseSpecs</text>
+  <text class="t-desc" x="268" y="577">ожидаемый статус: 200, 201, 204</text>
+  <rect class="chip" x="476" y="542" width="208" height="44" rx="7"/>
+  <text class="t-cls" x="488" y="560">models</text>
+  <text class="t-desc" x="488" y="577">BaseModel, *Request, *Response</text>
+
+  <!-- External: OpenMRS -->
+  <rect class="ext" x="20" y="630" width="680" height="60" rx="10"/>
+  <text class="t-layer" x="360" y="655" text-anchor="middle">OpenMRS REST API</text>
+  <text class="t-pkg" x="360" y="674" text-anchor="middle">gateway :80 · /openmrs/ws/rest/v1</text>
+
+  <!-- Main flow arrows -->
+  <line class="arr" x1="360" y1="138" x2="360" y2="169" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="370" y="159">вызывают</text>
+  <line class="arr" x1="360" y1="256" x2="360" y2="287" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="370" y="277">передают запрос</text>
+  <line class="arr" x1="360" y1="424" x2="360" y2="455" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="370" y="445">собраны из</text>
+  <line class="arr" x1="360" y1="596" x2="360" y2="627" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="370" y="617">HTTP-запрос</text>
+
+  <!-- Side column -->
+  <rect class="side" x="760" y="20" width="220" height="52" rx="8"/>
+  <text class="t-cls" x="870" y="41" text-anchor="middle">db</text>
+  <text class="t-desc" x="870" y="59" text-anchor="middle">DbClient · DbQueries</text>
+  <line class="arr" x1="700" y1="46" x2="757" y2="46" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="730" y="40" text-anchor="middle">SQL</text>
+
+  <rect class="side" x="760" y="86" width="220" height="52" rx="8"/>
+  <text class="t-cls" x="870" y="107" text-anchor="middle">models.comparison</text>
+  <text class="t-desc" x="870" y="125" text-anchor="middle">ModelAssertions + правила</text>
+  <line class="arr" x1="700" y1="112" x2="757" y2="112" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="730" y="106" text-anchor="middle">сверка</text>
+
+  <rect class="side" x="760" y="172" width="220" height="84" rx="8"/>
+  <text class="t-cls" x="870" y="194" text-anchor="middle">generators</text>
+  <text class="t-cls-s" x="870" y="214" text-anchor="middle">RandomModelGenerator</text>
+  <text class="t-desc" x="870" y="232" text-anchor="middle">RandomData · TestDates</text>
+  <line class="arr" x1="760" y1="222" x2="703" y2="222" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="731" y="216" text-anchor="middle">данные</text>
+
+  <rect class="side" x="760" y="320" width="220" height="52" rx="8"/>
+  <text class="t-cls" x="870" y="341" text-anchor="middle">storage</text>
+  <text class="t-cls-s" x="870" y="359" text-anchor="middle">CreatedPatientStorage</text>
+  <line class="arr" x1="700" y1="342" x2="757" y2="342" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="730" y="336" text-anchor="middle">uuid</text>
+
+  <rect class="side" x="760" y="490" width="220" height="96" rx="8"/>
+  <text class="t-cls" x="870" y="514" text-anchor="middle">configs</text>
+  <text class="t-cls-s" x="870" y="534" text-anchor="middle">Config</text>
+  <text class="t-desc" x="870" y="554" text-anchor="middle">config.properties</text>
+  <text class="t-desc" x="870" y="572" text-anchor="middle">-Dключ=… важнее файла</text>
+  <line class="arr" x1="760" y1="564" x2="703" y2="564" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="731" y="558" text-anchor="middle">адрес</text>
+
+  <rect class="ext" x="760" y="630" width="220" height="60" rx="10"/>
+  <text class="t-layer" x="870" y="655" text-anchor="middle">MariaDB</text>
+  <text class="t-pkg" x="870" y="674" text-anchor="middle">порт 3307 на компьютере</text>
+  <line class="arr-d" x1="700" y1="660" x2="757" y2="660" marker-end="url(#ah1)"/>
+  <text class="t-arrow" x="730" y="654" text-anchor="middle">пишет</text>
+
+  <!-- db reads MariaDB directly -->
+  <path class="arr" d="M980 46 H996 V660 H983" marker-end="url(#ah1)"/>
+  <text class="t-arrow" transform="translate(1010 353) rotate(-90)" text-anchor="middle">JDBC</text>
+</svg>
