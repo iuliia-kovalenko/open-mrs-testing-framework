@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="214" style="color:#44575e" viewBox="0 0 1000 214" role="img" aria-label="Двойная обёртка: снаружи softly.check ловит AssertionError, в середине StepLogger.log создаёт шаг Allure, который краснеет при падении, внутри обычный assertThat.">
+  <title>Проверка двойной обёрткой</title>
+  <style>
+    .band { fill: #ecf2f3; stroke: #d3dee1; }
+    .chip { fill: #ffffff; stroke: #98adb3; }
+    .side { fill: #ffffff; stroke: #98adb3; stroke-dasharray: 5 4; }
+    .ext { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .hl { fill: #ffffff; stroke: #0a7570; stroke-width: 1.8; }
+    .ghost { fill: none; stroke: #0a7570; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lane { fill: #ecf2f3; stroke: none; }
+    .wrap1 { fill: #ecf2f3; stroke: #98adb3; }
+    .wrap2 { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .wrap3 { fill: #ffffff; stroke: #98adb3; }
+    .arr { fill: none; stroke: #44575e; stroke-width: 1.5; }
+    .arr-d { fill: none; stroke: #44575e; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lead-line { fill: none; stroke: #98adb3; stroke-width: 1; }
+    .dot { fill: #44575e; }
+    .t-layer { font: 600 13.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-pkg { font: 400 11px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #586a71; }
+    .t-note { font: 400 11.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-cls { font: 500 11.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-cls-s { font: 500 10.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-desc { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-arrow { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #44575e; }
+    .t-code { font: 400 12px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-strong { font: 600 12.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-accent { font: 600 12px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0a7570; }
+  </style>
+  <rect x="0" y="0" width="1000" height="214" rx="12" fill="#ffffff"/>
+  <rect class="wrap1" x="20" y="16" width="600" height="182" rx="12"/>
+  <text class="t-code" x="38" y="40">softly.check(() -&gt;</text>
+  <rect class="wrap2" x="40" y="54" width="560" height="124" rx="10"/>
+  <text class="t-code" x="58" y="78">StepLogger.log("Проверить, что активных визитов нет", () -&gt; {</text>
+  <rect class="wrap3" x="60" y="92" width="520" height="44" rx="8"/>
+  <text class="t-code" x="78" y="119">assertThat(activeVisits).isEmpty();</text>
+  <text class="t-code" x="58" y="162">}));</text>
+
+  <line class="lead-line" x1="620" y1="35" x2="660" y2="35"/>
+  <circle class="dot" cx="620" cy="35" r="3"/>
+  <text class="t-strong" x="668" y="39">ловит AssertionError</text>
+  <text class="t-desc" x="668" y="57">тест идёт дальше, ошибка ждёт assertAll()</text>
+
+  <line class="lead-line" x1="600" y1="78" x2="660" y2="78"/>
+  <circle class="dot" cx="600" cy="78" r="3"/>
+  <text class="t-strong" x="668" y="82">шаг в Allure</text>
+  <text class="t-desc" x="668" y="100">при падении шаг становится красным</text>
+
+  <line class="lead-line" x1="580" y1="124" x2="660" y2="124"/>
+  <circle class="dot" cx="580" cy="124" r="3"/>
+  <text class="t-strong" x="668" y="128">обычный assertThat</text>
+  <text class="t-desc" x="668" y="146">не softly.assertThat: тот не бросает</text>
+  <text class="t-desc" x="668" y="164">исключение, и шаг остался бы зелёным</text>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" style="color:#44575e" viewBox="0 0 1000 300" role="img" aria-label="Позитивный кейс: тест вызывает Steps, внутри ValidatedCrudRequester с ожидаемым 201, тест получает модель ответа. Негативный кейс: Steps не участвуют, тест сам вызывает сырой CrudRequester со спецификацией ошибки и получает ValidatableResponse.">
+  <title>Позитивный и негативный кейс</title>
+  <style>
+    .band { fill: #ecf2f3; stroke: #d3dee1; }
+    .chip { fill: #ffffff; stroke: #98adb3; }
+    .side { fill: #ffffff; stroke: #98adb3; stroke-dasharray: 5 4; }
+    .ext { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .hl { fill: #ffffff; stroke: #0a7570; stroke-width: 1.8; }
+    .ghost { fill: none; stroke: #0a7570; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lane { fill: #ecf2f3; stroke: none; }
+    .wrap1 { fill: #ecf2f3; stroke: #98adb3; }
+    .wrap2 { fill: #dff1ef; stroke: #0a7570; stroke-width: 1.5; }
+    .wrap3 { fill: #ffffff; stroke: #98adb3; }
+    .arr { fill: none; stroke: #44575e; stroke-width: 1.5; }
+    .arr-d { fill: none; stroke: #44575e; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lead-line { fill: none; stroke: #98adb3; stroke-width: 1; }
+    .dot { fill: #44575e; }
+    .t-layer { font: 600 13.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-pkg { font: 400 11px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #586a71; }
+    .t-note { font: 400 11.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-cls { font: 500 11.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-cls-s { font: 500 10.5px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-desc { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #586a71; }
+    .t-arrow { font: 400 11px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #44575e; }
+    .t-code { font: 400 12px "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; fill: #16242a; }
+    .t-strong { font: 600 12.5px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #16242a; }
+    .t-accent { font: 600 12px "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif; fill: #0a7570; }
+  </style>
+  <rect x="0" y="0" width="1000" height="300" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <!-- Lane A -->
+  <rect class="lane" x="10" y="22" width="980" height="122" rx="10"/>
+  <text class="t-strong" x="24" y="62">Позитивный кейс</text>
+  <text class="t-desc" x="24" y="80">через Steps</text>
+  <rect class="chip" x="180" y="40" width="130" height="56" rx="8"/>
+  <text class="t-strong" x="245" y="63" text-anchor="middle">Тест</text>
+  <text class="t-cls-s" x="245" y="82" text-anchor="middle">PatientTest</text>
+  <rect class="hl" x="360" y="40" width="180" height="56" rx="8"/>
+  <text class="t-cls" x="450" y="63" text-anchor="middle">PatientSteps</text>
+  <text class="t-cls-s" x="450" y="82" text-anchor="middle">createPatient()</text>
+  <rect class="chip" x="590" y="40" width="220" height="56" rx="8"/>
+  <text class="t-cls-s" x="700" y="63" text-anchor="middle">ValidatedCrudRequester</text>
+  <text class="t-cls-s" x="700" y="82" text-anchor="middle">+ entityWasCreated()</text>
+  <rect class="ext" x="860" y="40" width="120" height="56" rx="8"/>
+  <text class="t-strong" x="920" y="63" text-anchor="middle">OpenMRS</text>
+  <text class="t-pkg" x="920" y="82" text-anchor="middle">POST /patient</text>
+  <line class="arr" x1="310" y1="68" x2="357" y2="68" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="335" y="61" text-anchor="middle">вызов</text>
+  <line class="arr" x1="540" y1="68" x2="587" y2="68" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="565" y="61" text-anchor="middle">запрос</text>
+  <line class="arr" x1="810" y1="68" x2="857" y2="68" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="835" y="61" text-anchor="middle">HTTP</text>
+  <path class="arr" d="M920 96 V114 H245 V99" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="582" y="131" text-anchor="middle">201 проверен внутри Steps → тест получает модель</text>
+
+  <!-- Lane B -->
+  <rect class="lane" x="10" y="166" width="980" height="128" rx="10"/>
+  <text class="t-strong" x="24" y="208">Негативный кейс</text>
+  <text class="t-desc" x="24" y="226">сырой Requester</text>
+  <rect class="chip" x="180" y="186" width="130" height="56" rx="8"/>
+  <text class="t-strong" x="245" y="209" text-anchor="middle">Тест</text>
+  <text class="t-cls-s" x="245" y="228" text-anchor="middle">PatientTest</text>
+  <rect class="ghost" x="360" y="186" width="180" height="56" rx="8"/>
+  <text class="t-accent" x="450" y="206" text-anchor="middle">Steps не участвуют</text>
+  <rect class="chip" x="590" y="186" width="220" height="56" rx="8"/>
+  <text class="t-cls-s" x="700" y="209" text-anchor="middle">CrudRequester</text>
+  <text class="t-cls-s" x="700" y="228" text-anchor="middle">+ ResponseSpecs ошибки</text>
+  <rect class="ext" x="860" y="186" width="120" height="56" rx="8"/>
+  <text class="t-strong" x="920" y="209" text-anchor="middle">OpenMRS</text>
+  <text class="t-pkg" x="920" y="228" text-anchor="middle">400</text>
+  <line class="arr" x1="310" y1="226" x2="587" y2="226" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="335" y="219" text-anchor="middle">вызов</text>
+  <line class="arr" x1="810" y1="214" x2="857" y2="214" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="835" y="207" text-anchor="middle">HTTP</text>
+  <path class="arr" d="M920 242 V262 H245 V245" marker-end="url(#ah2)"/>
+  <text class="t-arrow" x="582" y="280" text-anchor="middle">ValidatableResponse: статус и тело ошибки видны в тесте</text>
+</svg>
