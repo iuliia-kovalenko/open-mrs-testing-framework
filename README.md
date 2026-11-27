@@ -8,7 +8,7 @@ Java 21, Maven, JUnit 5, RestAssured, Lombok, AssertJ, Allure, JDBC (MariaDB), D
 
 ## Статус
 
-В работе: каркас фреймворка и API-кейсы приоритета P0.
+Готово: каркас фреймворка и все 11 API-кейсов приоритета P0 — AUTH-02, PAT-02, PAT-03, SRCH-02, APT-02, APT-03, VIS-02, VIS-03, VIS-05, VIS-06, E2E-02.
 
 ## Устройство фреймворка
 
